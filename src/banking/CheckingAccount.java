@@ -12,11 +12,18 @@ public class CheckingAccount extends BankAccount {
     // Overridden withdrawal with overdraft
     @Override
     public void withdrawal(double amount) {
-        if (getBalance() >= amount) {
-            super.withdrawal(amount);
-        } else {
-            processWithdrawal(amount);
+        if (amount > 0) {
+           	if (getBalance() >= amount) {
+        	    super.withdrawal(amount);
+        	} 
+           	else {
+        		processWithdrawal(amount);
+        	}
         }
+        else {
+        	System.out.println("Withdrawal unsuccessful: Amount entered must be a positive value.");
+        }
+
     }
 
     // Process overdraft with $30 fee

@@ -25,20 +25,30 @@ public class BankAccount {
 
     // Deposit funds
     public void deposit(double amount) {
-        this.balance += amount;
-        System.out.printf("$%.2f deposited successfully.%nYou have $%.2f remaining.%n%n", 
-                         amount, this.balance);
+        if (amount > 0) {
+        	this.balance += amount;
+            System.out.printf("$%.2f deposited successfully.%nYou have $%.2f remaining.%n%n", amount, this.balance);
+        }
+        else {
+        	System.out.println("Deposit unsuccessful: Amount entered must be a positive value.");
+        }
+
     }
 
     // Withdraw funds
     public void withdrawal(double amount) {
-        if (this.balance >= amount) {
-            this.balance -= amount;
-            System.out.printf("$%.2f withdrawn successfully.%n", amount);
-        } else {
-            System.out.println("Insufficient funds, transaction cancelled.");
+        if (amount > 0) {
+        	if (this.balance >= amount) {
+        		this.balance -= amount;
+        		System.out.printf("$%.2f withdrawn successfully.%n", amount);
+        	} else {
+        		System.out.println("Insufficient funds, transaction cancelled.");
+        	}
+        	System.out.printf("You have $%.2f remaining.%n%n", this.balance);
         }
-        System.out.printf("You have $%.2f remaining.%n%n", this.balance);
+        else {
+        	System.out.println("Withdrawal unsuccessful: Amount entered must be a positive value.");
+        }
     }
 
     // Display Account information
